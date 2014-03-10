@@ -11,7 +11,7 @@ var session = new snmp.Session();
 
 var Networks = [];
 var IP_List = [];
-Networks.push("10.20.4.0/32");
+Networks.push("192.168.1.0/32");
 var ipMaskArray = [];
 for (var i = 0; i < 33; i++) {
     var ipMask = new IP("0");
@@ -81,7 +81,7 @@ for (var index in IP_List) {
                 Devices[source]['interface'] = {};
             }
             oids.forEach(function (oid) {
-                session.getSubtree({ host: source, community: 'barney', oid: oid, timeouts: [12000, 12000, 12000, 12000, 12000, 12000] }, function (error, varbinds, baseOid) {
+                session.getSubtree({ host: source, community: 'public', oid: oid, timeouts: [12000, 12000, 12000, 12000, 12000, 12000] }, function (error, varbinds, baseOid) {
                     if (error) {
                         console.log(source, 'Fail :(');
                     } else {
