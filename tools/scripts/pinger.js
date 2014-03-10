@@ -14,7 +14,7 @@ var ping = require("net-ping");
 
 var Networks = [];
 var IP_List = [];
-Networks.push("10.20.10.0/24");
+Networks.push("192.168.1.0/24");
 var ipMaskArray = [];
 for (var i = 0; i < 33; i++) {
     var ipMask = new IP("0");
