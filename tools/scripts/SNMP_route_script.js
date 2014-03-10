@@ -36,7 +36,7 @@ var GetTable = function (host, tableName) {
 
 
 
-    session.getSubtree({ host: host, community: 'barney', oid: '.1.3.6.1.2.1.1.5', timeouts: [1200, 1200, 1200] }, function (error, varbinds, baseOid) {
+    session.getSubtree({ host: host, community: 'public', oid: '.1.3.6.1.2.1.1.5', timeouts: [1200, 1200, 1200] }, function (error, varbinds, baseOid) {
 
         if (!error) {
             sysName = varbinds[0].value;
@@ -50,7 +50,7 @@ var GetTable = function (host, tableName) {
             }
             console.log('scanning ' + sysName);
             //console.log(JSON.stringify(OID_REF, null, 4));
-            session.getSubtree({ host: host, community: 'barney', oid: tableEntryOID, timeouts: [12000, 12000, 12000] }, function (error, varbinds, baseOid) {
+            session.getSubtree({ host: host, community: 'public', oid: tableEntryOID, timeouts: [12000, 12000, 12000] }, function (error, varbinds, baseOid) {
 
                 if (!error && varbinds.length > 0) {
                     if (!Devices[sysName]) {
@@ -96,7 +96,7 @@ var GetTable = function (host, tableName) {
 
                     for (NextHop in RouteNextHop) {
                         if (RouteNextHop.hasOwnProperty(NextHop)) {
-                            session.getSubtree({ host: NextHop, community: 'barney', oid: '.1.3.6.1.2.1.1.5', timeouts: [1200, 1200, 1200] }, function (error, varbinds, baseOid, snmphost) {
+                            session.getSubtree({ host: NextHop, community: 'public', oid: '.1.3.6.1.2.1.1.5', timeouts: [1200, 1200, 1200] }, function (error, varbinds, baseOid, snmphost) {
                                 if (!error) {
                                     if (!DNS[varbinds[0].value]) {
                                         DNS[varbinds[0].value] = {};
@@ -137,4 +137,4 @@ var GetTable = function (host, tableName) {
 
 console.log(new Date());
 //GetTable('10.20.4.10', 'ipCidrRouteTable');//ipRouteTable//ipCidrRouteTable//ipNetToMediaTable//ipAddrTable//ifTable//ifXTable
-GetTable('10.20.72.112', 'ifTable'); 
+GetTable('127.0.0.1', 'ifTable'); 
