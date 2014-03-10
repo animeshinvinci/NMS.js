@@ -136,5 +136,5 @@ var GetTable = function (host, tableName) {
 
 
 console.log(new Date());
-//GetTable('10.20.4.10', 'ipCidrRouteTable');//ipRouteTable//ipCidrRouteTable//ipNetToMediaTable//ipAddrTable//ifTable//ifXTable
+//GetTable('192.168.1.79', 'ipCidrRouteTable');//ipRouteTable//ipCidrRouteTable//ipNetToMediaTable//ipAddrTable//ifTable//ifXTable
 GetTable('127.0.0.1', 'ifTable'); 
