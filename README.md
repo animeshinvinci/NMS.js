@@ -21,7 +21,7 @@ Requirements:
 * [mib.js](https://github.com/PrimeEuler/NMS.js/tree/master/tools/SNMP)
 
 Tools:
-'''
+```bash
 MIB: parser/browser/compiler.
 SNMP: walk/trap.
 SYSLOG: winston plugin/ daily file rotation.
@@ -29,7 +29,7 @@ TFTP: configuration backups tiggered from SNMP trap.
 SHELL SERVER: ping/trace/ssh/telnet.
 '''
 TODO:
-'''
+```bash
 much....
 '''
 
