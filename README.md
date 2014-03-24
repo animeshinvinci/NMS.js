@@ -28,7 +28,7 @@ SYSLOG: winston plugin/ daily file rotation.
 TFTP: configuration backups tiggered from SNMP trap.
 SHELL SERVER: ping/trace/ssh/telnet.
 ```
-TODO:
+ToDo:
 ```bash
 much....
 ```
