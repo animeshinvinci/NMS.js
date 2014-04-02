@@ -12,7 +12,7 @@ var app = express().https(SSL_options).io()
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 //var app = express().http().io();
 var io = require('socket.io-client')
-var socket = io.connect('https://127.0.0.1:8514');
+var socket = io.connect('https://127.0.0.1:8433');
 socket.on('connect', function () {
     console.log('joined syslog broadcast');
     socket.emit('join');
