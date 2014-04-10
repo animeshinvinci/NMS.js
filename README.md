@@ -4,7 +4,7 @@ NMS.js
 Open source network management sytem single-page application (SPA).
 
 
-Requirements:
+Solution Stack Requirements:
 * [jquery](http://jquery.com/)
 * [node.js](http://nodejs.org/) -- v0.8.7 or newer
 * [ssh2](https://github.com/mscdex/ssh2)
