@@ -33,5 +33,5 @@ ToDo:
 much....
 ```
 Demo:
-*[nms](http://nms.hopto.org:8080/) -- runing on a BeagleBone Black
+* [nms](http://nms.hopto.org:8080/) -- runing on a BeagleBone Black
 
