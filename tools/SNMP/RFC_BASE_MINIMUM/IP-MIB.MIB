@@ -1,6 +1,5 @@
 
-<!-- saved from url=(0041)ftp://ftp.cisco.com/pub/mibs/v2/IP-MIB.my -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></head><body><pre style="word-wrap: break-word; white-space: pre-wrap;">-- *****************************************************************
+*****************************************************************
 -- IP-MIB.my:   Management Information Base
 --              for the Internet Protocol (IP)
 --
@@ -5171,4 +5170,3 @@ icmpGroup OBJECT-GROUP
     ::= { ipMIBGroups 2 }
 
 END
-</pre></body></html>

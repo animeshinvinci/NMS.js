@@ -2,7 +2,7 @@
 var ssh2 = require('ssh2');
 var telnet = require('../lib/util-telnet');
 var ping = require("net-ping");
-
+var dns = require('dns');
 
 
 var EventEmitter = require('events').EventEmitter;
@@ -24,63 +24,104 @@ var shell = function () {
 	self.PING_session = ping.createSession(self.PING_options);
 }
 util.inherits(shell, EventEmitter);
-shell.prototype.PING = function (ipAddress, callback) {
-	this._connected = false;
-	var self = this
-	
-    self.PING_session.pingHost(ipAddress, function (error, target, sent, rcvd) {
-		var ms = rcvd - sent;
-		var response = { data:'' };
-		if (error) {
-			response.data = target + ": " + error.toString();
-		}
-		else {
-			response.data = target + ": Alive (ms=" + ms + ")";
-		}
-		if (!self.kill) {
-			callback(response);
-		}
-	})
+shell.prototype.PING = function (ipAddress, feedCb, doneCb) {
+    this._connected = false;
+    var self = this
+
+    if (ipAddress.split(".").length == 4 && parseInt(ipAddress.split(".")[3]) ){
+        ping(ipAddress)
+    } else {
+        self.kill ? self.kill : feedCb('resolving dns: ' + ipAddress);
+    	dns.lookup(ipAddress, function (err, address, family) {
+            if (err) {
+                var response = { data: '' };
+                response = ipAddress + ": " + err.toString();
+                self.kill ? self.kill : doneCb(response);
+            } else {
+            	
+            	ping(address)
+            }
+        });
+    }
+
+
+ function ping(ipAddress) {
+     feedCb('pinging: ' + ipAddress);
+        self.PING_session.pingHost(ipAddress, function (error, target, sent, rcvd) {
+            var ms = rcvd - sent;
+            var response = { data: '' };
+            if (error) {
+                response = target + ": " + error.toString();
+            }
+            else {
+                response = target + ": Alive (ms=" + ms + ")";
+            }
+
+            self.kill ? self.kill : doneCb(response);
+
+        })
+    }
+
 }
 shell.prototype.TRACERT = function (ipAddress, feedCb, doneCb) {
-	this._connected = false;
-	var self = this
-	function _doneCb(error, target) {
-		var response = { data: '' }
-		if (error) {
-			response.data = (target + ": " + error.toString());
-		}
-		else {
-			response.data = (target + ": Done");
-		}
-		doneCb(response);
-	}
-	function _feedCb(error, target, ttl, sent, rcvd) {
-		var response = { data: '' }
-		var ms = rcvd - sent;
-		if (error) {
-			if (error instanceof ping.TimeExceededError) {
-				response.data = (target + ": " + error.source + " (ttl="
-					+ ttl + " ms=" + ms + ")");
-			} else {
-				response.data = (target + ": " + error.toString()
-					+ " (ttl=" + ttl + " ms=" + ms + ")");
-			}
+    this._connected = false;
+    var self = this
 
-		} else {
-			response.data = (target + ": " + target + " (ttl=" + ttl
+    if (ipAddress.split(".").length == 4 && parseInt(ipAddress.split(".")[3])) {
+        tracert(ipAddress)
+    } else {
+        self.kill ? self.kill : feedCb('resolving dns: ' + ipAddress);
+    	dns.lookup(ipAddress,4, function (err, address, family) {
+            if (err) {
+                var response = { data: '' };
+                response = ipAddress + ": " + err.toString();
+                self.kill ? self.kill : doneCb(response);
+            } else {
+            	
+            	tracert(address)
+            }
+        });
+    }
+
+    function _doneCb(error, target) {
+        var response = { data: '' }
+        if (error) {
+            response = (target + ": " + error.toString());
+        }
+        else {
+            response = (target + ": Done");
+        }
+        self.kill ? self.kill : doneCb(response);
+    } 
+    function _feedCb(error, target, ttl, sent, rcvd) {
+        var response = { data: '' }
+        var ms = rcvd - sent;
+        if (error) {
+            if (error instanceof ping.TimeExceededError) {
+                response= (target + ": " + error.source + " (ttl="
+					+ ttl + " ms=" + ms + ")");
+            } else {
+                response= (target + ": " + error.toString()
+					+ " (ttl=" + ttl + " ms=" + ms + ")");
+            }
+
+        } else {
+            response = (target + ": " + target + " (ttl=" + ttl
 				+ " ms=" + ms + ")");
-		}
-		if (!self.kill) {
-			feedCb(response);
-		} else {
-			if (!self.dead) {
-				self.dead = true;
-				doneCb(response);
-			}
-		}
-	}
-	self.PING_session.traceRoute(ipAddress, 30, _feedCb, _doneCb);
+        }
+        if (!self.kill) {
+            self.kill ? self.kill : feedCb(response);
+        } else {
+            if (!self.dead) {
+                self.dead = true;
+                self.kill ? self.kill : doneCb(response);
+            }
+        }
+    }
+    function tracert(ipAddress) {
+        self.kill ? self.kill : feedCb('tracing route to: ' + ipAddress);
+        self.PING_session.traceRoute(ipAddress, 30, _feedCb, _doneCb);
+    }
 }
 shell.prototype.connect = function (opts) {
     this._protocol = opts.protocol || 'telnet'; //ssh

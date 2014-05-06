@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+
+    <title>NMS</title>
+    <link rel="stylesheet"  type="text/css" media="screen" href="client/css/flat-8139-theme/jquery-ui-1.10.4.custom.min.css"/>
+    <script type='text/javascript' src="client/js/jquery-1.10.2.min.js"></script>
+    <script type='text/javascript' src="client/js/jquery-ui-1.10.4.custom.min.js"></script>
+    <!--local terminal, dialogextend and jquery mouswheel plugin -->
+    <script type='text/javascript' src="client/js/jquery.mousewheel.js"></script>
+    <script type="text/javascript" src="client/js/jquery.dialogextend.min.js"></script>
+    <!--client style -->
+    <link rel="stylesheet" href="client/css/client.css"/>
+    <script type='text/javascript' src="/socket.io/socket.io.js"></script>
+    <script type='text/javascript' src="/term.js/src/term.js"></script>
+
+</head>
+<body >
+<div id="new-term-window" title='terminal'  class="new-div-window" style='background-image: url("client/css/images/terminal-cc8139.svg");' ></div>
+</body>
+<script>
+  var socket = io.connect();
+  var DivIndex = 0;
+  var Terminals = [];
+
+  Terminal.colors[256] = '';
+  Terminal.colors[257] = '';
+  
+  socket.on('data', function (data) {
+    $("#div-window-" + data.id).dialog('option', 'title', data.title);
+    Terminals[data.id].write(data.data);
+  });
+
+  socket.on('disconnect', function (data) {
+      //Terminals[data.id].destroy();
+      console.log(data);
+  });
+
+  $('#new-term-window').click(function () { 
+        DIV_WINDOW();
+        var element = document.getElementById('div-window-' + DivIndex);
+        var term = new Terminal({cols: 125,rows: 25, screenKeys: true});
+            term.termID = DivIndex;
+            Terminals[term.termID] = term;
+            term.on('data', function (data) {
+                var termData = {id : term.termID, data:data};
+                socket.emit('data', termData);
+            });
+            term.on('title', function (title) {
+                $("#div-window-" + DivIndex).dialog('option', 'title', title);
+            });
+            term.open(element);
+            socket.emit('create', {id:term.termID,data:''});
+            DivIndex++;
+  });
+
+  function DIV_WINDOW(){
+                          $('<div/>', {
+                                        id: 'div-window-' + DivIndex,
+                                        "height": '420px'
+                                    })
+                                    .appendTo("body")
+                                    .dialog({
+                                        "title": "",
+                                        "width": '900px',
+                                        minHeight: 420,
+                                        minWidth: 900,
+                                        position:[(DivIndex * 10) + 100,(DivIndex * 10) + 100],
+                                        close: function( event, ui ) { $('#div-window-' + DivIndex).remove(); }
+                                    })
+                                    .dialogExtend({
+                                        "closable": true,
+                                        "minimizable": true,
+                                        "collapsable": true,
+                                        "dblclick" : "collapse",
+                                        "titlebar": "transparent",
+                                        "minimizeLocation": "left",
+                                    });
+                              
+    }
+
+</script>
