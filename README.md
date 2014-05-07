@@ -45,5 +45,18 @@ Demo:
 
 ![](https://raw.githubusercontent.com/PrimeEuler/NMS.js/master/screen05.png)
 
+### terminal - ssh localhost
+
+![](https://raw.githubusercontent.com/PrimeEuler/NMS.js/master/screen06.png)
+
+### terminal - telnet towel.blinkenlights.nl
+
+![](https://raw.githubusercontent.com/PrimeEuler/NMS.js/master/screen07.png)
+
+### terminal - snmpGet jerm-pc:public:hrSWRunName
+
+![](https://raw.githubusercontent.com/PrimeEuler/NMS.js/master/screen07.png)
+
+
 
 
