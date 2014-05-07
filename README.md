@@ -53,9 +53,9 @@ Demo:
 
 ![](https://raw.githubusercontent.com/PrimeEuler/NMS.js/master/screen07.png)
 
-### terminal - snmpGet jerm-pc:public:hrSWRunName
+### terminal - snmpGet jerm-pc:public:hrSWRunName (multiple terminals)
 
-![](https://raw.githubusercontent.com/PrimeEuler/NMS.js/master/screen07.png)
+![](https://raw.githubusercontent.com/PrimeEuler/NMS.js/master/screen08.png)
 
 
 
