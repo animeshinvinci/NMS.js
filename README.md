@@ -27,3 +27,12 @@ Demo:
 ### prompt
 
 ![](https://raw.githubusercontent.com/PrimeEuler/NMS.js/master/screen01.png)
+
+### terminal - loading MIB modules
+
+![](https://raw.githubusercontent.com/PrimeEuler/NMS.js/master/screen02.png)
+
+
+### terminal - nms
+
+![](https://raw.githubusercontent.com/PrimeEuler/NMS.js/master/screen03.png)
