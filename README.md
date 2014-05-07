@@ -37,3 +37,13 @@ Demo:
 
 ![](https://raw.githubusercontent.com/PrimeEuler/NMS.js/master/screen03.png)
 
+### terminal - ? (help)
+
+![](https://raw.githubusercontent.com/PrimeEuler/NMS.js/master/screen04.png)
+
+### terminal - ping www.google.com, tracert www.google.com
+
+![](https://raw.githubusercontent.com/PrimeEuler/NMS.js/master/screen05.png)
+
+
+
