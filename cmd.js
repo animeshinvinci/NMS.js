@@ -478,8 +478,8 @@ var mib = new MIB('./tools/SNMP/');
                     OID: '1.3.6.1.3.17.4',
                     "NameSpace": "iso.org.dod.internet.experimental.nms.ssh"
                 },
-                snmpGet: {
-                    DESCRIPTION: 'Simple Network Management Protocol. Example: snmpGet 127.0.0.1:public:sysName OR snmpGet 127.0.0.1:public (snmp table walk from the current MIB)',
+                get: {
+                    DESCRIPTION: 'Simple Network Management Protocol. Example: Get 127.0.0.1:public:sysName OR Get 127.0.0.1:public (snmp table walk from the current MIB)',
                     MACRO: function (self, endpoint) {
                         if (!endpoint) { endpoint = '' };
                         self.title = self.cmd;
@@ -515,10 +515,10 @@ var mib = new MIB('./tools/SNMP/');
                         });
                     },
                     OID: '1.3.6.1.3.17.5',
-                    "NameSpace": "iso.org.dod.internet.experimental.nms.snmpGet"
+                    "NameSpace": "iso.org.dod.internet.experimental.nms.get"
                 },
-                mibGet: {
-                    DESCRIPTION: 'Management information base. Example: mibGet sysDescr OR mibGet 1.3.6.1.2.1.1.1 OR mibGet (Retrieve details for the current MIB)',
+                show: {
+                    DESCRIPTION: 'Management information base. Example: show sysDescr OR show 1.3.6.1.2.1.1.1 OR show (Retrieve details for the current MIB)',
                     MACRO: function (self, args) {
                         if (!args) { args = self.cmd };
                         self.title = self.cmd;
@@ -536,10 +536,10 @@ var mib = new MIB('./tools/SNMP/');
                         });
                     },
                     OID: '1.3.6.1.3.17.6',
-                    "NameSpace": "iso.org.dod.internet.experimental.nms.mibGet"
+                    "NameSpace": "iso.org.dod.internet.experimental.nms.show"
 
                 },
-                snmpMon: {
+                monitor: {
                     DESCRIPTION: 'Monitor information based on snmp events or polling.',
                     MACRO: function (self, args) {
                         self.title = self.cmd;
@@ -547,9 +547,9 @@ var mib = new MIB('./tools/SNMP/');
                         self.READY = true;
                     },
                     OID: '1.3.6.1.3.17.7',
-                    "NameSpace": "iso.org.dod.internet.experimental.nms.nmsMon"
+                    "NameSpace": "iso.org.dod.internet.experimental.nms.monitor"
                 },
-                snmpScript: {
+                script: {
                     DESCRIPTION: 'Trigger scripts based on treshholds set for active snmp monitors.',
                     MACRO: function (self, args) {
                         self.title = self.cmd;
@@ -557,7 +557,7 @@ var mib = new MIB('./tools/SNMP/');
                         self.READY = true;
                     },
                     OID: '1.3.6.1.3.17.8',
-                    "NameSpace": "iso.org.dod.internet.experimental.nms.nmsMon"
+                    "NameSpace": "iso.org.dod.internet.experimental.nms.script"
                 },
                 syslog: {
                     DESCRIPTION: 'Monitor real time syslog information.',
@@ -567,7 +567,7 @@ var mib = new MIB('./tools/SNMP/');
                         self.READY = true;
                     },
                     OID: '1.3.6.1.3.17.8',
-                    "NameSpace": "iso.org.dod.internet.experimental.nms.nmsMon"
+                    "NameSpace": "iso.org.dod.internet.experimental.nms.syslog"
                 }
             },
 
