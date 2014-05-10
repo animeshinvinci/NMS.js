@@ -530,7 +530,7 @@ var mib = new MIB('./tools/SNMP/');
                             var DATA = ''
                             var keys = Object.keys(MIB), len = keys.length;
                             for (var i = 0; i < len; i++) {
-                                var info = (MIB[keys[i]] && typeof (MIB[keys[i]]) === 'string') ? MIB[keys[i]].replace(/  /g, '').replace(/\r/g, ' ').replace(/\n/g, '').wrap(70, '\r\n\t\t\t\t', true) : '';
+                                var info = (MIB[keys[i]] && (typeof (MIB[keys[i]]) === 'string'|true)) ? MIB[keys[i]].toString().replace(/  /g, '').replace(/\r/g, ' ').replace(/\n/g, '').wrap(70, '\r\n\t\t\t\t', true) : '';
                                 DATA += '\r\n   ' + keys[i].max(25) + '\t' + info;
                             }
                             //DATA = JSON.stringify(MIB, null, 4).replace(/\n/g, '\r\n');
