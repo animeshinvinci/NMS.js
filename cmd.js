@@ -482,7 +482,8 @@ var mib = new MIB('./tools/SNMP/');
                     DESCRIPTION: 'Simple Network Management Protocol. Example: Get 127.0.0.1:public:sysName OR Get 127.0.0.1:public (snmp table walk from the current MIB)',
                     MACRO: function (self, endpoint) {
                         if (!endpoint) { endpoint = '' };
-                        self.title = self.cmd;
+                        //self.title = self.cmd;
+                        self.DATA('\r\n getting ' + endpoint + ' .....');
                         var data = endpoint.split(':')[2] ? endpoint.split(':')[2] : self.cmd;
                         var oidArray = data.split(".");
                         var oid = '';
@@ -521,7 +522,8 @@ var mib = new MIB('./tools/SNMP/');
                     DESCRIPTION: 'Management information base. Example: show sysDescr OR show 1.3.6.1.2.1.1.1 OR show (Retrieve details for the current MIB)',
                     MACRO: function (self, args) {
                         if (!args) { args = self.cmd };
-                        self.title = self.cmd;
+                        
+                        self.DATA('\r\n showing ' + args + ' .....');
                         self.mib.GetObject(args, function (MIB) {
                             var DATA = ''
                             var keys = Object.keys(MIB), len = keys.length;
@@ -531,6 +533,7 @@ var mib = new MIB('./tools/SNMP/');
                             }
                             //DATA = JSON.stringify(MIB, null, 4).replace(/\n/g, '\r\n');
                             self.DATA('\r\n' + DATA)
+                            self.title = self.cmd;
                             self.DATA('\r\n' + self.prompt());
                             self.READY = true;
                         });
