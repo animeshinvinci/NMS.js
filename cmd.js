@@ -507,7 +507,9 @@ var mib = new MIB('./tools/SNMP/');
                                         var ns = vb.NameSpace.split(".").pop();
                                         DATA += '\r\n' + (options.host + ' - ' + ns + '.' + vb.oid) + '\t:' + vb.Value;
                                     });
+                                    
                                     self.DATA(DATA);
+                                    self.title = self.cmd;
                                     self.DATA('\r\n' + self.prompt());
                                     self.READY = true;
                                 });
