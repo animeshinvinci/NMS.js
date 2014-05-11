@@ -524,7 +524,7 @@ var mib = new MIB('./tools/SNMP/');
                 show: {
                     DESCRIPTION: 'Management information base. Example: show sysDescr OR show 1.3.6.1.2.1.1.1 OR show (Retrieve details for the current MIB)',
                     MACRO: function (self, args) {
-                        if (!args) { args = self.cmd };
+                        if (!args) { args = self.cmd.split(".").pop() };
                         
                         self.DATA('\r\n showing ' + args + ' .....');
                         self.mib.GetObject(args, function (MIB) {
