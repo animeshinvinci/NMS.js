@@ -18,6 +18,8 @@ angstrom:
 		#opkg install python-multiprocessing
 		-OK
 	-nmp install snmp-native
+		-OK
+
 
 
 
