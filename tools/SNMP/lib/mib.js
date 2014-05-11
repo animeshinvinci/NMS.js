@@ -1,4 +1,5 @@
 var fs = require('fs');
+
 var MIB = function (dir) {
     return ({
         directory: dir ? dir : '',
@@ -39,6 +40,7 @@ var MIB = function (dir) {
         SymbolBuffer: {},
         StringBuffer: '',
         Modules: {},
+        Objects: {},
         MACROS: [],
         CurrentObject: null,
         TempObject: {},
@@ -831,7 +833,6 @@ var MIB = function (dir) {
 
             console.log("Compiling modules...");
             this.Serialize();
-            console.log("READY");
 
         },
         WriteToFile: function () {

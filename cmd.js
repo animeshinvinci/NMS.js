@@ -4,6 +4,7 @@ var shell = require('./server/lib/util-shell');
 var MIB = require('./tools/SNMP/lib/mib');
 var term = require('./term.js');
 var snmp = require('snmp-native');
+var util = require("util");
 var app = express().http().io();
 
 app.use(function (req, res, next) {
@@ -115,7 +116,8 @@ var mib = new MIB('./tools/SNMP/');
 
             prompt: function () { return ('\x1b[2K\r' + this.cmd.split(".").pop() + ':') },
             INIT: function () {
-                var self = this;
+            	var self = this;
+				
                 var mib = self.mib.Modules;
                 var Modules = Object.keys(mib);
                 for (var i = 0; i < Modules.length; i++) {
@@ -124,13 +126,12 @@ var mib = new MIB('./tools/SNMP/');
                         for (var ii = 0; ii < ModuleObjects.length; ii++) {
                             if (mib[Modules[i]][ModuleObjects[ii]].NameSpace) {
                                 this.functions[mib[Modules[i]][ModuleObjects[ii]].ObjectName] = mib[Modules[i]][ModuleObjects[ii]];
-                                this.DATA('\x1b[2K\r loading MIB module ' + Modules[i] + ' - ' + Math.round(((ii / ModuleObjects.length) * 100)) + '% complete');
+                                //this.DATA('\x1b[2K\r loading MIB module ' + Modules[i] + ' - ' + Math.round(((ii / ModuleObjects.length) * 100)) + '% complete');
                             }
                         }
                     }
                 }
-
-                this.DATA(this.prompt());
+                self.DATA(self.prompt());
             },
             DATA: function (data) {
 
