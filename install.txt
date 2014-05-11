@@ -1,1 +1,101 @@
-msvs_version=2012
+windows:-nmp install net-ping --msvs_version=2012
+
+angstrom:
+	-npm install express.io 
+		-Error: SSL Error: CERT_NOT_YET_VALID (date issue)
+		#set up NTP: http://derekmolloy.ie/automatically-setting-the-beaglebone-black-time-using-ntp/
+		-OK
+	-npm install express.io 
+		-OK
+	-nmp install ssh2 
+		-OK
+	-nmp install net-ping
+		-ImportError: No module named compiler.ast
+		#opkg install python-compiler
+		-ImportError: No module named filecmp 
+		#opkg install python-misc
+		-ImportError: No module named multiprocessing
+		#opkg install python-multiprocessing
+		-OK
+	-nmp install snmp-native
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# NOTES:
+#set up NTP: http://derekmolloy.ie/automatically-setting-the-beaglebone-black-time-using-ntp/
+opkg update
+opkg install ntp 
+
+
+
+nano /etc/ntp.conf
+logfile /var/log/ntpd.log
+
+# NTP Servers for America from www.pool.ntp.org
+server 0.north-america.pool.ntp.org
+server 1.north-america.pool.ntp.org
+server 2.north-america.pool.ntp.org
+server 3.north-america.pool.ntp.org
+restrict 192.168.1.0 mask 255.255.255.0 nomodify notrap
+
+
+rm localtime
+ln -s /usr/share/zoneinfo/America/Chicago /etc/localtime
+
+systemctl enable ntpdate.service
+systemctl enable ntpd.service
+
+cd/lib/systemd/system
+more ntpd.service 
+
+[Unit]
+Description=Network Time Service
+After=network.target
+ 
+[Service]
+Type=forking
+PIDFile=/run/ntpd.pid
+ExecStart=/usr/bin/ntpd -p /run/ntpd.pid
+ 
+[Install]
+WantedBy=multi-user.target
+
+
+
+
+
+nano ntpdate.service
+# REPLACE: ExecStart=/usr/bin/ntpdate-sync silent
+# WITH: ExecStart=/usr/bin/ntpd -q -g -x
+# ADD: ExecStart=/sbin/hwclock --systohc
+
+more ntpdate.service
+[Unit]
+Description=Network Time Service (one-shot ntpdate mode)
+Before=ntpd.service
+ 
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/ntpd -q -g -x
+ExecStart=/sbin/hwclock --systohc
+RemainAfterExit=yes
+ 
+[Install]
+WantedBy=multi-user.target
