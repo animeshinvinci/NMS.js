@@ -26,36 +26,36 @@ Demo:
 
 ### prompt
 
-![](https://raw.githubusercontent.com/PrimeEuler/NMS.js/master/screen01.png)
+![](https://raw.githubusercontent.com/PrimeEuler/NMS.js/master/demo/screen01.png)
 
 ### terminal - loading MIB modules
 
-![](https://raw.githubusercontent.com/PrimeEuler/NMS.js/master/screen02.png)
+![](https://raw.githubusercontent.com/PrimeEuler/NMS.js/master/demo/screen02.png)
 
 
 ### terminal - nms
 
-![](https://raw.githubusercontent.com/PrimeEuler/NMS.js/master/screen03.png)
+![](https://raw.githubusercontent.com/PrimeEuler/NMS.js/master/demo/screen03.png)
 
 ### terminal - ? (help)
 
-![](https://raw.githubusercontent.com/PrimeEuler/NMS.js/master/screen04.png)
+![](https://raw.githubusercontent.com/PrimeEuler/NMS.js/master/demo/screen04.png)
 
 ### terminal - ping www.google.com, tracert www.google.com
 
-![](https://raw.githubusercontent.com/PrimeEuler/NMS.js/master/screen05.png)
+![](https://raw.githubusercontent.com/PrimeEuler/NMS.js/master/demo/screen05.png)
 
 ### terminal - ssh localhost
 
-![](https://raw.githubusercontent.com/PrimeEuler/NMS.js/master/screen06.png)
+![](https://raw.githubusercontent.com/PrimeEuler/NMS.js/master/demo/screen06.png)
 
 ### terminal - telnet towel.blinkenlights.nl
 
-![](https://raw.githubusercontent.com/PrimeEuler/NMS.js/master/screen07.png)
+![](https://raw.githubusercontent.com/PrimeEuler/NMS.js/master/demo/screen07.png)
 
 ### terminal - snmpGet jerm-pc:public:hrSWRunName (multiple terminals)
 
-![](https://raw.githubusercontent.com/PrimeEuler/NMS.js/master/screen08.png)
+![](https://raw.githubusercontent.com/PrimeEuler/NMS.js/master/demo/screen08.png)
 
 
 
