@@ -732,7 +732,7 @@ var MIB = function (dir) {
             } else {
 
                 var Modules = Object.keys(this.Modules), M_len = Modules.length;
-                for (m = 0; m < M_len; m++) {
+                for (m = M_len - 1; m >= 0; m--) {// search newset moduels first
                     if (this.Modules[Modules[m]][string]) {
                         found = true;
                         callback(this.Modules[Modules[m]][string]);
