@@ -698,7 +698,8 @@ Terminal.prototype.open = function(parent) {
   if (this.context.navigator && this.context.navigator.userAgent) {
     this.isMac = !!~this.context.navigator.userAgent.indexOf('Mac');
     this.isIpad = !!~this.context.navigator.userAgent.indexOf('iPad');
-    this.isIphone = !!~this.context.navigator.userAgent.indexOf('iPhone');
+    //this.isIphone = !!~this.context.navigator.userAgent.indexOf('iPhone');
+    this.isIphone = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
     this.isMSIE = !!~this.context.navigator.userAgent.indexOf('MSIE');
   }
 
