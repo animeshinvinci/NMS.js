@@ -1,11 +1,18 @@
-windows:-nmp install net-ping --msvs_version=2012
+windows:	
+	-npm install express.io 
+		-OK
+	-nmp install ssh2 
+		-OK
+	-nmp install net-ping --msvs_version=2012
+		-ok
+	-nmp install snmp-native
+		-OK
+
 
 angstrom:
 	-npm install express.io 
 		-Error: SSL Error: CERT_NOT_YET_VALID (date issue)
 		#set up NTP: http://derekmolloy.ie/automatically-setting-the-beaglebone-black-time-using-ntp/
-		-OK
-	-npm install express.io 
 		-OK
 	-nmp install ssh2 
 		-OK
