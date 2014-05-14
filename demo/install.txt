@@ -27,8 +27,14 @@ angstrom:
 	-nmp install snmp-native
 		-OK
 
-
-
+	-git 1.83 install:	
+		 #http://derekmolloy.ie/building-git-beaglebone/
+		-ImportError No module named py-compile
+		 #https://groups.google.com/forum/#!topic/beaglebone/LU6LoEs-zHQ
+	- cd /var/lib/cloud9/
+	- git clone git://github.com/PrimeEuler/NMS.js.git
+	- cd NMS.js
+	- node cmd
 
 
 	
