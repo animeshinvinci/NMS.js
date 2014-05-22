@@ -5,7 +5,13 @@ var MIB = require('./tools/SNMP/lib/mib');
 var term = require('./term.js');
 var snmp = require('snmp-native');
 var util = require("util");
-var app = express().http().io();
+var SSL_options = {
+    key: fs.readFileSync('./server/ssl/ca.key'),
+    cert: fs.readFileSync('./server/ssl/ca.crt'),
+    passphrase: 'password'
+}
+var app = express().https(SSL_options).io()
+//var app = express().http().io();
 
 app.use(function (req, res, next) {
     var setHeader = res.setHeader;
@@ -24,7 +30,7 @@ app.use(express.static(__dirname));
 app.use(term.middleware());
 app.use(express.cookieParser());
 app.use(express.session({ secret: '9973' }));
-app.listen(8080);
+app.listen(8443);
 
 app.get('/', function (req, res) {
 
