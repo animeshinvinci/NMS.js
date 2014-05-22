@@ -420,7 +420,7 @@ var MIB = function (dir) {
                                                     //build value array.
                                                     val = val.replace("{", "").replace("}", "").split(",");
                                                 }
-
+                                               
                                                 switch (key) {
                                                     case 'SYNTAX':
                                                         switch (val) {
@@ -468,9 +468,9 @@ var MIB = function (dir) {
                                                         //SYNTAX value
                                                         Object[ObjectName][key] = val;
                                                         break;
-                                                    //case 'DESCRIPTION':                                                                                                                                                                                                                        
-                                                    //remove description                                                                                                                                                                                                                        
-                                                    //   break;                                                                                                                                                                                                                        
+                                                    //case 'DESCRIPTION':                                                                                                                                                                                                                            
+                                                    //remove description                                                                                                                                                                                                                            
+                                                    //   break;                                                                                                                                                                                                                            
                                                     default:
                                                         Object[ObjectName][key] = val;
                                                         break;
@@ -785,12 +785,13 @@ var MIB = function (dir) {
 
             this.Import("./RFC_BASE_MINIMUM//RFC1155-SMI.MIB");
             this.Import("./RFC_BASE_MINIMUM//RFC1158-MIB.MIB");
+            this.Import("./RFC_BASE_MINIMUM//RFC-1212.mib");
+            this.Import("./RFC_BASE_MINIMUM//RFC1213-MIB-II.mib");
             this.Import("./RFC_BASE_MINIMUM//SNMPv2-SMI.mib");
             this.Import("./RFC_BASE_MINIMUM//SNMPv2-CONF.mib");
             this.Import("./RFC_BASE_MINIMUM//SNMPv2-TC.mib");
             this.Import("./RFC_BASE_MINIMUM//SNMPv2-MIB.MIB");
-            this.Import("./RFC_BASE_MINIMUM//RFC-1212.mib");
-            this.Import("./RFC_BASE_MINIMUM//RFC1213-MIB-II.mib");
+
             this.Import("./RFC_BASE_MINIMUM//IANAifType-MIB.MIB");
             this.Import("./RFC_BASE_MINIMUM//IF-MIB.MIB");
             this.Import("./RFC_BASE_MINIMUM//IP-FORWARD-MIB.MIB");
@@ -818,6 +819,11 @@ var MIB = function (dir) {
             this.Import("./RFC_BASE_MINIMUM//IP-MIB.MIB");
 
             this.Import("./RFC_BASE_MINIMUM//SNMP-FRAMEWORK-MIB.MIB");
+
+            this.Import("./RFC_BASE_MINIMUM//ENTITY-MIB.MIB");
+
+
+
             this.Import("./RFC_BASE_MINIMUM//CISCO-VTP-MIB.MIB");
 
 
@@ -830,6 +836,7 @@ var MIB = function (dir) {
             this.Import("./RFC_BASE_MINIMUM//CISCO-IPSEC-FLOW-MONITOR-MIB.mib");
             this.Import("./RFC_BASE_MINIMUM//CISCO-IPSEC-MIB.mib");
             this.Import("./RFC_BASE_MINIMUM//CISCO-EIGRP-MIB.mib");
+            this.Import("./RFC_BASE_MINIMUM//CISCO-ENTITY-SENSOR-MIB.MIB");
 
             console.log("Compiling modules...");
             this.Serialize();
@@ -845,15 +852,15 @@ var MIB = function (dir) {
             });
         },
         ReadFromFile: function () {
-        	var self = this;
-        	fs.readFile(__dirname + "/mib.JSON", 'utf8', function (err, data) {
-        		if (err) {
-        			console.log(err);
-        		} else {
-        			self.Modules = JSON.parse(data);
-        			console.log("The file was read!");
-        		}
-        	});
+            var self = this;
+            fs.readFile(__dirname + "/mib.JSON", 'utf8', function (err, data) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    self.Modules = JSON.parse(data);
+                    console.log("The file was read!");
+                }
+            });
         },
         ParseVarBind__: function (varbind, callback) {
             var self = this;
