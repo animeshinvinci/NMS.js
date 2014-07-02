@@ -16,12 +16,12 @@ formatted data in  in memory to allow quick access and lookup.
 A couple of useful functions are also bundled with mib.js, among them a MIB 
 browser. The browser provides MIB validation and also includes a simple SNMP 
 manager.
-A note on SNMP
+SNMP
 ========
 Please note that mib.js is not an SNMP stack. You can use mib.js together with
 [snmp-native](https://github.com/calmh/node-snmp-native). Other libraries have
 been used such as [snmpjs](https://github.com/joyent/node-snmpjs).
-MIB files
+MIB
 ========
 A default set of MIB files are compiled by the LoadMIBs() function. The files are stored in the  [RFC_BASE_MINIMUM](https://github.com/PrimeEuler/NMS.js/tree/master/tools/SNMP/RFC_BASE_MINIMUM) directory.
 You can persist JSON mib information to disk for quicker initiation. It is stored in the [mib.JSON](https://github.com/PrimeEuler/NMS.js/blob/master/tools/SNMP/lib/mib.JSON) file.
