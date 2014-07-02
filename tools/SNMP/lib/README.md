@@ -19,3 +19,6 @@ A note on SNMP
 Please note that mib.js is not an SNMP stack. You can use mib.js together with
 [snmp-native](https://github.com/calmh/node-snmp-native). Other libraries have
 been used such as [snmpjs](https://github.com/joyent/node-snmpjs).
+MIB files
+========
+A set of MIB files are loaded by the LoadMIBs() function. The files are stored in the  [RFC_BASE_MINIMUM](https://github.com/PrimeEuler/NMS.js/tree/master/tools/SNMP/RFC_BASE_MINIMUM) directory.
