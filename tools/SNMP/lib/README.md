@@ -12,4 +12,4 @@ What does mib.js contain?
 =======
 The mib.js library contains classes for easy access to all the information in 
 the MIB file, including OIDs, type data and descriptions. It stores the JSON 
-formated data in  in memory to allow quick access and lookup.
+formatted data in  in memory to allow quick access and lookup.
