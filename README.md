@@ -20,7 +20,7 @@ ToDo:
 the internet of everything...
 ```
 Demo:
-* [nms](https://nms.hopto.org:8443/) -- runing on a [BeagleBone Black](http://beagleboard.org/Products/BeagleBone+Black)
+* [nms](https://nms.ddns.net:8443/) -- runing on a [BeagleBone Black](http://beagleboard.org/Products/BeagleBone+Black)
 
 ## Screenshots
 
