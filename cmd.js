@@ -5,7 +5,7 @@ var MIB = require('./tools/SNMP/lib/mib');
 var term = require('./term.js');
 var snmp = require('snmp-native');
 var util = require("util");
-<<<<<<< HEAD
+//<<<<<<< HEAD
 
 
 var SSL_options = {
@@ -15,14 +15,14 @@ var SSL_options = {
 }
 var app = express().https(SSL_options).io();
 
-=======
+//=======
 var SSL_options = {
     key: fs.readFileSync('./server/ssl/ca.key'),
     cert: fs.readFileSync('./server/ssl/ca.crt'),
     passphrase: 'password'
 }
 var app = express().https(SSL_options).io()
->>>>>>> 6a916e0609ccacb05a76c2af5cb9233209a2be3a
+//>>>>>>> 6a916e0609ccacb05a76c2af5cb9233209a2be3a
 //var app = express().http().io();
 
 app.use(function (req, res, next) {
